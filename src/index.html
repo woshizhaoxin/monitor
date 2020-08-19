@@ -6,62 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>前端监控SDK</title>
     <style>
-        .content {
+        /* .content {
             width: 300px;
             word-wrap: break-word;
-        }
+        } */
     </style>
 </head>
 
 <body></body>
 <div id="container">
-    <input id="errorBtn" type="button" value="点击报错" onClick="errorClick()">
-    <input id="promiseBtn" type="button" value="点击报错" onClick="promiseErrorClick()">
-    <input id="successAjax" type="button" value="ajax成功请求" onclick="sendSuccess()">
-    <input id="errorAjax" type="button" value="ajax失败请求" onClick="sendError()">
+    <!-- 测试js错误 -->
+    <!-- <input id="errorBtn" type="button" value="点击报错" onClick="errorClick()"> -->
+    <!-- <input id="promiseBtn" type="button" value="点击报错" onClick="promiseErrorClick()"> -->
+
+    <!-- 测试ajax -->
+    <!-- <input id="successAjax" type="button" value="ajax成功请求" onclick="sendSuccess()"> -->
+    <!-- <input id="errorAjax" type="button" value="ajax失败请求" onClick="sendError()"> -->
+
+    <!-- 测试白屏 -->
     <!-- <div class="content"></div> -->
 </div>
 </body>
 
 <script>
+    // 测试性能指标
+    setTimeout(() => {
+        let content = document.querySelector('#container')
+        let h1 = document.createElement('h1')
+        h1.innerHTML = '我是页面中最有意义的内容'
+        // 属性名是写死的 没有elementtiming属性，FMP就没有
+        h1.setAttribute('elementtiming', 'meaningful')
+        content.appendChild(h1)
+    }, 2000)
+
+    // 测试用户体验时间
+    // DOM解析完成，即使依赖的资源没有加载完成，也会触发这个事件
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     let start = Date.now()
+    //     // 每次执行1ms，执行1000次，1001毫秒后完成
+    //     while ((Date.now() - start) < 1000) { }
+    // })
+
+    // 测试js错误
+    // function errorClick() {
+    //     window.varError.error = 'error'
+    // }
+
+    // 测试promise错误
+    // function promiseErrorClick() {
+    //     new Promise((resolve, reject) => {
+    //         window.varError.error = 'error'
+    //     }).then(res => { })
+    // }
+
+    // 测试ajax错误
+    // function sendSuccess() {
+    //     let xhr = new XMLHttpRequest()
+    //     xhr.open('GET', '/success', true)
+    //     xhr.responseType = 'json'
+    //     xhr.onload = function () {
+    //         console.log(xhr.response)
+    //     }
+    //     xhr.onerror = function (error) {
+    //         console.log(error)
+    //     }
+    //     xhr.send()
+    // }
+    // function sendError() {
+    //     let xhr = new XMLHttpRequest()
+    //     xhr.open('POST', '/error', true)
+    //     xhr.responseType = 'json'
+    //     xhr.onload = function () {
+    //         console.log(xhr.response)
+    //     }
+    //     xhr.onerror = function (error) {
+    //         console.log(error)
+    //     }
+    //     xhr.send("name=jack")
+    // }
+
     // 测试白屏
     // let content = document.getElementsByClassName('content')[0]
     // content.innerHTML = '<span>@</span>'.repeat(10000)
-
-
-    function errorClick() {
-        window.varError.error = 'error'
-    }
-    function promiseErrorClick() {
-        new Promise((resolve, reject) => {
-            window.varError.error = 'error'
-        }).then(res => { })
-    }
-    function sendSuccess() {
-        let xhr = new XMLHttpRequest()
-        xhr.open('GET', '/success', true)
-        xhr.responseType = 'json'
-        xhr.onload = function () {
-            console.log(xhr.response)
-        }
-        xhr.onerror = function (error) {
-            console.log(error)
-        }
-        xhr.send()
-    }
-    function sendError() {
-        let xhr = new XMLHttpRequest()
-        xhr.open('POST', '/error', true)
-        xhr.responseType = 'json'
-        xhr.onload = function () {
-            console.log(xhr.response)
-        }
-        xhr.onerror = function (error) {
-            console.log(error)
-        }
-        xhr.send("name=jack")
-    }
 </script>
+<!-- 测试加载错误 -->
 <!-- <script src="someError.js"></script> -->
 
 </html>

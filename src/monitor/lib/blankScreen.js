@@ -44,7 +44,7 @@ export function blankScreen() {
         }
 
         // 空白点足够多，认为是白屏
-        console.log(emptyPoints)
+        // console.log(emptyPoints)
         if (emptyPoints >= 18) {
 
             let centerElements = document.elementsFromPoint(
